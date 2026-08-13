@@ -1,0 +1,3582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Credit Unions LLC | Financial Services</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+/* =====================================================
+   COLORS
+===================================================== */
+
+:root {
+
+    --navy: #071b36;
+    --blue: #168cff;
+    --blue-dark: #0869c9;
+
+    --white: #ffffff;
+
+    --background: #f4f7fb;
+
+    --text: #172033;
+    --muted: #667085;
+
+    --border: #dce2ea;
+
+    --success: #138a5b;
+    --warning: #c17b00;
+    --danger: #c62828;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+
+    width: 92%;
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    background: var(--navy);
+
+    color: white;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,.15);
+}
+
+.nav {
+
+    min-height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.logo {
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: white;
+}
+
+.logo span {
+
+    color: var(--blue);
+}
+
+nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+nav a {
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+nav a:hover {
+
+    color: var(--blue);
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn {
+
+    display: inline-block;
+
+    border: none;
+
+    border-radius: 7px;
+
+    padding: 13px 21px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.btn-primary {
+
+    background: var(--blue);
+
+    color: white;
+}
+
+.btn-primary:hover {
+
+    background: var(--blue-dark);
+}
+
+.btn-dark {
+
+    background: var(--navy);
+
+    color: white;
+}
+
+.btn-outline {
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--navy);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    background:
+        linear-gradient(
+            120deg,
+            #071b36,
+            #0e4a82
+        );
+
+    color: white;
+
+    padding: 110px 0;
+}
+
+.hero-content {
+
+    max-width: 720px;
+}
+
+.hero h1 {
+
+    font-size: clamp(42px, 7vw, 64px);
+
+    line-height: 1.05;
+
+    margin-bottom: 25px;
+}
+
+.hero p {
+
+    font-size: 19px;
+
+    color: #d7e4f3;
+
+    margin-bottom: 30px;
+
+    max-width: 650px;
+}
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
+section {
+
+    padding: 80px 0;
+}
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+
+    color: var(--navy);
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+.section-title p {
+
+    color: var(--muted);
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 24px;
+}
+
+.card {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 5px 25px rgba(7,27,54,.05);
+}
+
+.card h3 {
+
+    color: var(--navy);
+
+    margin-bottom: 12px;
+}
+
+.card p {
+
+    color: var(--muted);
+}
+
+
+/* =====================================================
+   COMPANY FACTS
+===================================================== */
+
+.facts {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.fact {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 25px;
+
+    text-align: center;
+}
+
+.fact strong {
+
+    display: block;
+
+    font-size: 26px;
+
+    color: var(--navy);
+}
+
+.fact span {
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+.form-box {
+
+    max-width: 760px;
+
+    margin: auto;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 40px;
+
+    box-shadow:
+        0 5px 25px rgba(0,0,0,.05);
+}
+
+.form-box h2 {
+
+    color: var(--navy);
+
+    margin-bottom: 8px;
+}
+
+.form-box > p {
+
+    color: var(--muted);
+
+    margin-bottom: 28px;
+}
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.form-group {
+
+    margin-bottom: 18px;
+}
+
+.form-group label {
+
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+
+    color: #344054;
+}
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    padding: 13px;
+
+    background: white;
+
+    color: var(--text);
+
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(22,140,255,.10);
+}
+
+textarea {
+
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+.full {
+
+    grid-column: 1 / -1;
+}
+
+
+/* =====================================================
+   REGISTRATION STEPS
+===================================================== */
+
+.registration-section {
+
+    background: #eef4fb;
+}
+
+.registration-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.step-indicator {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+.step {
+
+    width: 32px;
+
+    height: 6px;
+
+    border-radius: 20px;
+
+    background: #d5dce5;
+}
+
+.step.active {
+
+    background: var(--blue);
+}
+
+
+/* =====================================================
+   PASSWORD STRENGTH
+===================================================== */
+
+.password-strength {
+
+    height: 6px;
+
+    background: #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 8px;
+}
+
+.password-strength-bar {
+
+    height: 100%;
+
+    width: 0%;
+
+    background: var(--danger);
+
+    transition: .3s;
+}
+
+.password-message {
+
+    font-size: 12px;
+
+    margin-top: 5px;
+
+    color: var(--muted);
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.checkbox {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin: 15px 0;
+}
+
+.checkbox input {
+
+    width: auto;
+
+    margin-top: 5px;
+}
+
+.checkbox label {
+
+    font-size: 13px;
+
+    color: var(--muted);
+}
+
+
+/* =====================================================
+   SECURITY NOTICE
+===================================================== */
+
+.security-notice {
+
+    background: #edf7f3;
+
+    border: 1px solid #bde5d4;
+
+    border-radius: 8px;
+
+    padding: 15px;
+
+    margin-bottom: 25px;
+
+    font-size: 13px;
+
+    color: #175c43;
+}
+
+
+/* =====================================================
+   CALCULATOR
+===================================================== */
+
+.calculator {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    background: var(--navy);
+
+    color: white;
+
+    border-radius: 14px;
+
+    padding: 35px;
+}
+
+.calculator label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 7px;
+}
+
+.calculator input {
+
+    border: none;
+}
+
+.calculator-result {
+
+    margin-top: 25px;
+
+    padding: 25px;
+
+    border-radius: 9px;
+
+    background: #102f55;
+}
+
+.calculator-result strong {
+
+    display: block;
+
+    font-size: 34px;
+
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+.auth-section {
+
+    background: var(--navy);
+}
+
+.auth-box {
+
+    max-width: 450px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 14px;
+}
+
+.auth-box h2 {
+
+    color: var(--navy);
+
+    margin-bottom: 8px;
+}
+
+.auth-box p {
+
+    color: var(--muted);
+
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard {
+
+    background: #eef3f9;
+}
+
+.dashboard-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+
+    color: var(--navy);
+}
+
+.dashboard-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.dashboard-card {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 25px;
+}
+
+.dashboard-card small {
+
+    color: var(--muted);
+}
+
+.dashboard-card strong {
+
+    display: block;
+
+    font-size: 28px;
+
+    color: var(--navy);
+
+    margin-top: 8px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-box {
+
+    margin-top: 25px;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+
+    text-align: left;
+
+    padding: 13px;
+
+    border-bottom: 1px solid #eee;
+}
+
+th {
+
+    color: var(--navy);
+}
+
+
+/* =====================================================
+   DOCUMENT UPLOAD
+===================================================== */
+
+.upload-box {
+
+    border: 2px dashed #cbd5e1;
+
+    border-radius: 10px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+.notification {
+
+    background: #eaf4ff;
+
+    border-left: 4px solid var(--blue);
+
+    padding: 16px;
+
+    border-radius: 5px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+.admin-section {
+
+    background: var(--navy);
+
+    color: white;
+}
+
+.admin-section .section-title h2 {
+
+    color: white;
+}
+
+.admin-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.admin-card {
+
+    background: white;
+
+    color: var(--text);
+
+    border-radius: 10px;
+
+    padding: 25px;
+}
+
+
+/* =====================================================
+   SECURITY
+===================================================== */
+
+.security-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =====================================================
+   LEGAL
+===================================================== */
+
+.legal-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background: #041124;
+
+    color: white;
+
+    padding: 55px 0 25px;
+}
+
+.footer-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    gap: 35px;
+}
+
+footer h3,
+footer h4 {
+
+    margin-bottom: 15px;
+}
+
+footer p,
+footer a {
+
+    display: block;
+
+    color: #9eabc0;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+footer a:hover {
+
+    color: white;
+}
+
+.footer-bottom {
+
+    border-top: 1px solid rgba(255,255,255,.1);
+
+    margin-top: 35px;
+
+    padding-top: 20px;
+
+    font-size: 12px;
+
+    color: #7e8da4;
+}
+
+
+/* =====================================================
+   HIDDEN PAGES
+===================================================== */
+
+.page {
+
+    display: none;
+}
+
+.page.active {
+
+    display: block;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px) {
+
+    nav {
+
+        display: none;
+    }
+
+    .cards,
+    .facts,
+    .dashboard-cards,
+    .admin-grid,
+    .security-grid,
+    .legal-grid,
+    .footer-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+
+        grid-column: auto;
+    }
+
+    .hero h1 {
+
+        font-size: 42px;
+    }
+
+    .registration-header {
+
+        display: block;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<div class="container nav">
+
+<a
+    href="#home"
+    class="logo"
+>
+    Credit <span>Unions</span>
+</a>
+
+
+<nav>
+
+<a href="#home">
+    Home
+</a>
+
+<a href="#services">
+    Services
+</a>
+
+<a href="#calculator">
+    Calculator
+</a>
+
+<a href="#contact">
+    Contact
+</a>
+
+<a href="#login">
+    Login
+</a>
+
+<a
+    href="#register"
+    class="btn btn-primary"
+>
+    Register
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HOME PAGE
+===================================================== -->
+
+<main id="home">
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<h1>
+    Financing made simple.
+</h1>
+
+<p>
+    Credit Unions LLC provides consumer finance
+    and mortgage brokerage services through a
+    modern digital experience.
+</p>
+
+
+<div class="hero-buttons">
+
+<a
+    href="#loan-application"
+    class="btn btn-primary"
+>
+    Apply Now
+</a>
+
+
+<a
+    href="#services"
+    class="btn btn-light"
+>
+    Explore Services
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- COMPANY FACTS -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Credit Unions LLC
+</h2>
+
+<p>
+    Business information
+</p>
+
+</div>
+
+
+<div class="facts">
+
+<div class="fact">
+
+<strong>
+    LLC
+</strong>
+
+<span>
+    Corporate Structure
+</span>
+
+</div>
+
+
+<div class="fact">
+
+<strong>
+    NMLS
+</strong>
+
+<span>
+    Registration*
+</span>
+
+</div>
+
+
+<div class="fact">
+
+<strong>
+    $40K
+</strong>
+
+<span>
+    Surety Bond*
+</span>
+
+</div>
+
+
+<div class="fact">
+
+<strong>
+    $300K
+</strong>
+
+<span>
+    Stated Net Worth*
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Our Services
+</h2>
+
+<p>
+    Financial services for qualified applicants.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+
+<h3>
+    💳 Consumer Finance
+</h3>
+
+<p>
+    Apply for consumer financing through
+    our online application process.
+</p>
+
+<br>
+
+<a
+    href="#loan-application"
+    class="btn btn-primary"
+>
+    Apply
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    🏠 Mortgage Brokerage
+</h3>
+
+<p>
+    Explore mortgage financing options
+    through our brokerage services.
+</p>
+
+<br>
+
+<a
+    href="#mortgage"
+    class="btn btn-primary"
+>
+    Start
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    🔐 Customer Portal
+</h3>
+
+<p>
+    Manage applications, documents,
+    notifications and payments.
+</p>
+
+<br>
+
+<a
+    href="#login"
+    class="btn btn-primary"
+>
+    Login
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CALCULATOR -->
+
+<section id="calculator">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Loan Calculator
+</h2>
+
+<p>
+    Illustrative payment estimate.
+</p>
+
+</div>
+
+
+<div class="calculator">
+
+<label>
+    Loan Amount
+</label>
+
+<input
+    id="loanAmount"
+    type="number"
+    value="10000"
+>
+
+
+<label>
+    Monthly Interest Rate (%)
+</label>
+
+<input
+    id="interestRate"
+    type="number"
+    value="14"
+    step="0.01"
+>
+
+
+<label>
+    Loan Term (Months)
+</label>
+
+<input
+    id="loanTerm"
+    type="number"
+    value="12"
+>
+
+
+<button
+    class="btn btn-primary"
+    style="margin-top:20px"
+    onclick="calculateLoan()"
+>
+    Calculate
+</button>
+
+
+<div class="calculator-result">
+
+Estimated Monthly Payment
+
+<strong id="monthlyPayment">
+    $0.00
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     REAL-LOOKING REGISTRATION PAGE
+===================================================== -->
+
+<section
+    id="register"
+    class="registration-section"
+>
+
+<div class="container">
+
+
+<div class="registration-header">
+
+<div>
+
+<h2>
+    Create your account
+</h2>
+
+<p>
+    Register for secure online access.
+</p>
+
+</div>
+
+
+<div class="step-indicator">
+
+<div
+    class="step active"
+    id="stepBar1"
+></div>
+
+<div
+    class="step"
+    id="stepBar2"
+></div>
+
+<div
+    class="step"
+    id="stepBar3"
+></div>
+
+</div>
+
+</div>
+
+
+
+<div class="form-box">
+
+
+<!-- STEP 1 -->
+
+<div id="registrationStep1">
+
+<h2>
+    Personal Information
+</h2>
+
+<p>
+    Enter your basic information.
+</p>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+    First Name
+</label>
+
+<input
+    id="firstName"
+    type="text"
+    placeholder="First name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Last Name
+</label>
+
+<input
+    id="lastName"
+    type="text"
+    placeholder="Last name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Date of Birth
+</label>
+
+<input
+    type="date"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Phone Number
+</label>
+
+<input
+    id="phone"
+    type="tel"
+    placeholder="+1 (555) 555-5555"
+>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    Email Address
+</label>
+
+<input
+    id="email"
+    type="email"
+    placeholder="you@example.com"
+>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    Residential Address
+</label>
+
+<input
+    type="text"
+    placeholder="Street address"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    City
+</label>
+
+<input
+    type="text"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    State
+</label>
+
+<select>
+
+<option>
+    Select State
+</option>
+
+<option>Alabama</option>
+<option>Alaska</option>
+<option>Arizona</option>
+<option>California</option>
+<option>Florida</option>
+<option>Georgia</option>
+<option>New York</option>
+<option>Texas</option>
+<option>Virginia</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    ZIP Code
+</label>
+
+<input
+    type="text"
+>
+
+</div>
+
+</div>
+
+
+<button
+    class="btn btn-primary"
+    onclick="registrationNext(2)"
+>
+    Continue
+</button>
+
+</div>
+
+
+
+<!-- STEP 2 -->
+
+<div
+    id="registrationStep2"
+    class="hidden"
+>
+
+<h2>
+    Account Security
+</h2>
+
+<p>
+    Create your login credentials.
+</p>
+
+
+<div class="form-group">
+
+<label>
+    Email
+</label>
+
+<input
+    id="accountEmail"
+    type="email"
+    readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Create Password
+</label>
+
+<input
+    id="password"
+    type="password"
+    placeholder="Create a strong password"
+    oninput="checkPassword()"
+>
+
+
+<div class="password-strength">
+
+<div
+    id="passwordBar"
+    class="password-strength-bar"
+></div>
+
+</div>
+
+
+<div
+    id="passwordMessage"
+    class="password-message"
+>
+    Password strength
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Confirm Password
+</label>
+
+<input
+    id="confirmPassword"
+    type="password"
+    placeholder="Repeat password"
+>
+
+</div>
+
+
+<h3>
+    Two-Factor Authentication
+</h3>
+
+
+<div class="checkbox">
+
+<input
+    type="checkbox"
+    id="enableEmail2FA"
+    checked
+>
+
+<label>
+    Enable email verification for account security.
+</label>
+
+</div>
+
+
+<div class="checkbox">
+
+<input
+    type="checkbox"
+    id="enablePhone2FA"
+>
+
+<label>
+    Enable phone/SMS verification.
+</label>
+
+</div>
+
+
+<button
+    class="btn btn-outline"
+    onclick="registrationNext(1)"
+>
+    Back
+</button>
+
+
+<button
+    class="btn btn-primary"
+    onclick="registrationNext(3)"
+>
+    Continue
+</button>
+
+</div>
+
+
+
+<!-- STEP 3 -->
+
+<div
+    id="registrationStep3"
+    class="hidden"
+>
+
+<h2>
+    Terms & Consent
+</h2>
+
+<p>
+    Review the information below before creating your account.
+</p>
+
+
+<div class="security-notice">
+
+<strong>
+    Security Notice
+</strong>
+
+<br>
+
+Your account should use strong authentication.
+A production system must securely encrypt and protect
+customer information.
+
+</div>
+
+
+<div class="checkbox">
+
+<input
+    type="checkbox"
+    id="terms"
+>
+
+<label>
+    I agree to the Terms of Service and acknowledge
+    the Privacy Policy.
+</label>
+
+</div>
+
+
+<div class="checkbox">
+
+<input
+    type="checkbox"
+    id="electronicConsent"
+>
+
+<label>
+    I consent to receive electronic communications
+    where permitted and acknowledge the applicable
+    disclosures.
+</label>
+
+</div>
+
+
+<div class="checkbox">
+
+<input
+    type="checkbox"
+    id="applicationConsent"
+>
+
+<label>
+    I understand that creating an account does not
+    guarantee approval for financing.
+</label>
+
+</div>
+
+
+<button
+    class="btn btn-outline"
+    onclick="registrationNext(2)"
+>
+    Back
+</button>
+
+
+<button
+    class="btn btn-primary"
+    onclick="createAccount()"
+>
+    Create Account
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section
+    id="login"
+    class="auth-section"
+>
+
+<div class="container">
+
+<div class="auth-box">
+
+<h2>
+    Customer Login
+</h2>
+
+<p>
+    Access your secure customer account.
+</p>
+
+
+<form
+    onsubmit="login(event)"
+>
+
+<div class="form-group">
+
+<label>
+    Email
+</label>
+
+<input
+    type="email"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Password
+</label>
+
+<input
+    type="password"
+    required
+>
+
+</div>
+
+
+<button
+    class="btn btn-primary"
+    type="submit"
+>
+    Sign In
+</button>
+
+</form>
+
+
+<br>
+
+<a href="#register">
+    Create an account
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     2FA
+===================================================== -->
+
+<section id="twoFactor">
+
+<div class="container">
+
+<div class="form-box">
+
+<h2>
+    Verify Your Identity
+</h2>
+
+<p>
+    Enter the six-digit verification code sent
+    to your registered email or phone.
+</p>
+
+
+<div class="form-group">
+
+<label>
+    Verification Code
+</label>
+
+<input
+    id="twoFactorCode"
+    maxlength="6"
+    inputmode="numeric"
+    placeholder="000000"
+>
+
+</div>
+
+
+<button
+    class="btn btn-primary"
+    onclick="verify2FA()"
+>
+    Verify
+</button>
+
+
+<button
+    class="btn btn-outline"
+    onclick="resendCode()"
+>
+    Resend Code
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CUSTOMER DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboard"
+    class="dashboard"
+>
+
+<div class="container">
+
+<div class="dashboard-header">
+
+<div>
+
+<h2>
+    Customer Dashboard
+</h2>
+
+<p>
+    Welcome back.
+</p>
+
+</div>
+
+
+<button
+    class="btn btn-dark"
+    onclick="logout()"
+>
+    Log Out
+</button>
+
+</div>
+
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<small>
+    Application Status
+</small>
+
+<strong>
+    Under Review
+</strong>
+
+</div>
+
+
+<div class="dashboard-card">
+
+<small>
+    Requested Amount
+</small>
+
+<strong>
+    $10,000
+</strong>
+
+</div>
+
+
+<div class="dashboard-card">
+
+<small>
+    Account Security
+</small>
+
+<strong>
+    2FA Enabled
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="table-box">
+
+<h3>
+    Your Applications
+</h3>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>
+Application
+</th>
+
+<th>
+Amount
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+Consumer Financing
+</td>
+
+<td>
+$10,000
+</td>
+
+<td>
+Under Review
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LOAN APPLICATION
+===================================================== -->
+
+<section id="loan-application">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Consumer Finance Application
+</h2>
+
+<p>
+    Begin your financing application.
+</p>
+
+</div>
+
+
+<div class="form-box">
+
+<form
+    onsubmit="submitLoan(event)"
+>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+    First Name
+</label>
+
+<input
+    type="text"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Last Name
+</label>
+
+<input
+    type="text"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Requested Amount
+</label>
+
+<input
+    type="number"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Employment Status
+</label>
+
+<select>
+
+<option>
+    Employed
+</option>
+
+<option>
+    Self Employed
+</option>
+
+<option>
+    Retired
+</option>
+
+<option>
+    Other
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    Additional Information
+</label>
+
+<textarea></textarea>
+
+</div>
+
+</div>
+
+
+<button
+    class="btn btn-primary"
+>
+    Submit Application
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DOCUMENT UPLOAD
+===================================================== -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Secure Document Upload
+</h2>
+
+<p>
+    Upload documents associated with your application.
+</p>
+
+</div>
+
+
+<div class="form-box">
+
+<div class="upload-box">
+
+<input
+    id="document"
+    type="file"
+>
+
+
+<br><br>
+
+<button
+    class="btn btn-primary"
+    onclick="uploadDocument()"
+>
+    Upload Document
+</button>
+
+
+<p
+    id="documentStatus"
+    style="margin-top:15px"
+></p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MORTGAGE APPLICATION
+===================================================== -->
+
+<section id="mortgage">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Mortgage Brokerage Application
+</h2>
+
+<p>
+    Begin your mortgage inquiry.
+</p>
+
+</div>
+
+
+<div class="form-box">
+
+<form
+    onsubmit="submitMortgage(event)"
+>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+    First Name
+</label>
+
+<input
+    type="text"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Last Name
+</label>
+
+<input
+    type="text"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Property Value
+</label>
+
+<input
+    type="number"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Requested Mortgage
+</label>
+
+<input
+    type="number"
+    required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Property Type
+</label>
+
+<select>
+
+<option>
+    Single Family
+</option>
+
+<option>
+    Condominium
+</option>
+
+<option>
+    Multi-Family
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    Purchase or Refinance
+</label>
+
+<select>
+
+<option>
+    Purchase
+</option>
+
+<option>
+    Refinance
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<button
+    class="btn btn-primary"
+>
+    Submit Mortgage Inquiry
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PAYMENTS
+===================================================== -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Payments
+</h2>
+
+<p>
+    Customer payment management.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h3>
+    Current Balance
+</h3>
+
+<p>
+    $10,000.00
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    Next Payment
+</h3>
+
+<p>
+    $0.00
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    Payment History
+</h3>
+
+<p>
+    View payments inside your customer account.
+</p>
+
+</div>
+
+</div>
+
+
+<br>
+
+<div style="text-align:center">
+
+<button
+    class="btn btn-primary"
+    onclick="makePayment()"
+>
+    Make Payment
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     NOTIFICATIONS
+===================================================== -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Notifications
+</h2>
+
+</div>
+
+
+<div class="notification">
+
+<strong>
+    Application Update
+</strong>
+
+<br>
+
+Your application is currently under review.
+
+</div>
+
+
+<div class="notification">
+
+<strong>
+    Security Alert
+</strong>
+
+<br>
+
+Two-factor authentication is enabled for your account.
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ADMIN DASHBOARD
+===================================================== -->
+
+<section class="admin-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Administration
+</h2>
+
+<p style="color:#c9d6e7">
+    Authorized staff administration area.
+</p>
+
+</div>
+
+
+<div class="admin-grid">
+
+
+<div class="admin-card">
+
+<small>
+    Total Applications
+</small>
+
+<h2>
+    24
+</h2>
+
+</div>
+
+
+<div class="admin-card">
+
+<small>
+    Under Review
+</small>
+
+<h2>
+    12
+</h2>
+
+</div>
+
+
+<div class="admin-card">
+
+<small>
+    Approved
+</small>
+
+<h2>
+    8
+</h2>
+
+</div>
+
+</div>
+
+
+<div class="table-box">
+
+<h3>
+    Application Review
+</h3>
+
+<br>
+
+
+<table>
+
+<tr>
+
+<th>
+Customer
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Amount
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Action
+</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+Demo Customer
+</td>
+
+<td>
+Consumer Finance
+</td>
+
+<td>
+$10,000
+</td>
+
+<td id="applicationStatus">
+    Under Review
+</td>
+
+<td>
+
+<button
+    class="btn btn-primary"
+    onclick="reviewApplication()"
+>
+    Review
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SECURITY
+===================================================== -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Security & Audit
+</h2>
+
+<p>
+    Security features planned for the production system.
+</p>
+
+</div>
+
+
+<div class="security-grid">
+
+
+<div class="card">
+
+<h3>
+    🔐 Two-Factor Authentication
+</h3>
+
+<p>
+    Email and phone verification for account security.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    🛡️ Access Control
+</h3>
+
+<p>
+    Customers and administrators should have
+    separate permissions.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    📋 Audit Logs
+</h3>
+
+<p>
+    Important account and administrative actions
+    should be recorded.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LEGAL
+===================================================== -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Legal & Disclosures
+</h2>
+
+</div>
+
+
+<div class="legal-grid">
+
+
+<div class="card">
+
+<h3>
+    Privacy Policy
+</h3>
+
+<p>
+    Information about how customer information
+    is collected and protected.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    Terms of Service
+</h3>
+
+<p>
+    Terms governing use of this website and
+    customer portal.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    Licensing
+</h3>
+
+<p>
+    Consumer Finance License, Mortgage Broker License
+    and NMLS information should be accurately displayed.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+    Disclosures
+</h3>
+
+<p>
+    Rates, APR, fees, eligibility and other
+    required disclosures should be provided.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+    Contact Credit Unions LLC
+</h2>
+
+<p>
+    We're here to help.
+</p>
+
+</div>
+
+
+<div class="form-box" style="text-align:center">
+
+<h2>
+    Email Us
+</h2>
+
+<p>
+    For questions and general inquiries:
+</p>
+
+
+<a
+    href="mailto:creditunionsus32@gmail.com"
+    class="btn btn-primary"
+>
+    creditunionsus32@gmail.com
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+
+<div>
+
+<h3>
+    Credit Unions LLC
+</h3>
+
+<p>
+    Consumer finance and mortgage brokerage services.
+</p>
+
+<p>
+    Email:
+    creditunionsus32@gmail.com
+</p>
+
+</div>
+
+
+<div>
+
+<h4>
+    Company
+</h4>
+
+<a href="#home">
+    Home
+</a>
+
+<a href="#services">
+    Services
+</a>
+
+<a href="#contact">
+    Contact
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+    Customer
+</h4>
+
+<a href="#register">
+    Register
+</a>
+
+<a href="#login">
+    Login
+</a>
+
+<a href="#dashboard">
+    Dashboard
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+    Legal
+</h4>
+
+<a href="#">
+    Privacy Policy
+</a>
+
+<a href="#">
+    Terms
+</a>
+
+<a href="#">
+    Licensing
+</a>
+
+<a href="#">
+    Disclosures
+</a>
+
+</div>
+
+
+</div>
+
+
+<div class="footer-bottom">
+
+© 2026 Credit Unions LLC. All rights reserved.
+
+<br><br>
+
+* Licensing, NMLS registration, surety bond,
+net worth, rates and other regulatory information
+must be verified before publication. This demo
+does not constitute an offer or commitment to lend.
+
+</div>
+
+</div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   LOAN CALCULATOR
+===================================================== */
+
+function calculateLoan() {
+
+    const amount =
+        Number(
+            document.getElementById(
+                "loanAmount"
+            ).value
+        );
+
+    const annualRate =
+        Number(
+            document.getElementById(
+                "interestRate"
+            ).value
+        );
+
+    const months =
+        Number(
+            document.getElementById(
+                "loanTerm"
+            ).value
+        );
+
+
+    if (
+        amount <= 0 ||
+        months <= 0 ||
+        annualRate < 0
+    ) {
+
+        alert(
+            "Please enter valid information."
+        );
+
+        return;
+    }
+
+
+    const rate =
+        annualRate / 100;
+
+
+    let payment;
+
+
+    if (rate === 0) {
+
+        payment =
+            amount / months;
+
+    } else {
+
+        payment =
+            amount *
+            (
+                rate *
+                Math.pow(
+                    1 + rate,
+                    months
+                )
+            ) /
+            (
+                Math.pow(
+                    1 + rate,
+                    months
+                ) - 1
+            );
+    }
+
+
+    document.getElementById(
+        "monthlyPayment"
+    ).innerText =
+
+        payment.toLocaleString(
+            "en-US",
+            {
+                style: "currency",
+                currency: "USD"
+            }
+        );
+}
+
+
+
+/* =====================================================
+   REGISTRATION STEPS
+===================================================== */
+
+function registrationNext(step) {
+
+    document
+        .getElementById(
+            "registrationStep1"
+        )
+        .classList.add("hidden");
+
+    document
+        .getElementById(
+            "registrationStep2"
+        )
+        .classList.add("hidden");
+
+    document
+        .getElementById(
+            "registrationStep3"
+        )
+        .classList.add("hidden");
+
+
+    document
+        .getElementById(
+            "registrationStep" + step
+        )
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById(
+            "stepBar1"
+        )
+        .classList.remove("active");
+
+    document
+        .getElementById(
+            "stepBar2"
+        )
+        .classList.remove("active");
+
+    document
+        .getElementById(
+            "stepBar3"
+        )
+        .classList.remove("active");
+
+
+    document
+        .getElementById(
+            "stepBar" + step
+        )
+        .classList.add("active");
+
+
+    if (step === 2) {
+
+        document.getElementById(
+            "accountEmail"
+        ).value =
+
+            document.getElementById(
+                "email"
+            ).value;
+    }
+
+}
+
+
+
+/* =====================================================
+   PASSWORD STRENGTH
+===================================================== */
+
+function checkPassword() {
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    let strength = 0;
+
+
+    if (password.length >= 8)
+        strength += 25;
+
+
+    if (/[A-Z]/.test(password))
+        strength += 25;
+
+
+    if (/[0-9]/.test(password))
+        strength += 25;
+
+
+    if (/[^A-Za-z0-9]/.test(password))
+        strength += 25;
+
+
+    const bar =
+        document.getElementById(
+            "passwordBar"
+        );
+
+
+    bar.style.width =
+        strength + "%";
+
+
+    const message =
+        document.getElementById(
+            "passwordMessage"
+        );
+
+
+    if (strength < 50) {
+
+        message.innerText =
+            "Weak password";
+
+    }
+
+    else if (strength < 75) {
+
+        message.innerText =
+            "Moderate password";
+
+    }
+
+    else {
+
+        message.innerText =
+            "Strong password";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   CREATE ACCOUNT
+===================================================== */
+
+function createAccount() {
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    const confirmPassword =
+        document.getElementById(
+            "confirmPassword"
+        ).value;
+
+
+    const terms =
+        document.getElementById(
+            "terms"
+        ).checked;
+
+
+    const electronicConsent =
+        document.getElementById(
+            "electronicConsent"
+        ).checked;
+
+
+    const applicationConsent =
+        document.getElementById(
+            "applicationConsent"
+        ).checked;
+
+
+    if (password.length < 8) {
+
+        alert(
+            "Password must contain at least 8 characters."
+        );
+
+        return;
+    }
+
+
+    if (password !== confirmPassword) {
+
+        alert(
+            "Passwords do not match."
+        );
+
+        return;
+    }
+
+
+    if (
+        !terms ||
+        !electronicConsent ||
+        !applicationConsent
+    ) {
+
+        alert(
+            "Please accept all required acknowledgements."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "Demo account created successfully."
+    );
+
+
+    window.location.hash =
+        "login";
+
+}
+
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function login(event) {
+
+    event.preventDefault();
+
+
+    alert(
+        "Demo login successful. Two-factor authentication is next."
+    );
+
+
+    window.location.hash =
+        "twoFactor";
+
+}
+
+
+
+/* =====================================================
+   2FA
+===================================================== */
+
+function verify2FA() {
+
+    const code =
+        document.getElementById(
+            "twoFactorCode"
+        ).value;
+
+
+    if (!/^\d{6}$/.test(code)) {
+
+        alert(
+            "Enter a valid six-digit code."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "Demo 2FA verification successful."
+    );
+
+
+    window.location.hash =
+        "dashboard";
+
+}
+
+
+
+/* =====================================================
+   RESEND CODE
+===================================================== */
+
+function resendCode() {
+
+    alert(
+        "Demo: a new verification code would be sent by email or SMS."
+    );
+
+}
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+
+    alert(
+        "You have been logged out of the demo."
+    );
+
+
+    window.location.hash =
+        "login";
+
+}
+
+
+
+/* =====================================================
+   LOAN APPLICATION
+===================================================== */
+
+function submitLoan(event) {
+
+    event.preventDefault();
+
+
+    alert(
+        "Demo loan application submitted."
+    );
+
+}
+
+
+
+/* =====================================================
+   DOCUMENT UPLOAD
+===================================================== */
+
+function uploadDocument() {
+
+    const file =
+        document.getElementById(
+            "document"
+        ).files[0];
+
+
+    if (!file) {
+
+        alert(
+            "Please select a document."
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "documentStatus"
+    ).innerText =
+
+        "Demo: " +
+        file.name +
+        " selected. A production system must securely upload and store the file.";
+
+}
+
+
+
+/* =====================================================
+   MORTGAGE
+===================================================== */
+
+function submitMortgage(event) {
+
+    event.preventDefault();
+
+
+    alert(
+        "Demo mortgage inquiry submitted."
+    );
+
+}
+
+
+
+/* =====================================================
+   PAYMENT
+===================================================== */
+
+function makePayment() {
+
+    alert(
+        "Demo payment screen. A real payment system must use a secure payment processor."
+    );
+
+}
+
+
+
+/* =====================================================
+   ADMIN REVIEW
+===================================================== */
+
+function reviewApplication() {
+
+    const approved =
+        confirm(
+            "Demo administrator review: approve this application?"
+        );
+
+
+    if (approved) {
+
+        document.getElementById(
+            "applicationStatus"
+        ).innerText =
+            "Approved";
+
+        alert(
+            "Demo application marked Approved."
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   INITIAL CALCULATOR
+===================================================== */
+
+calculateLoan();
+
+</script>
+
+
+</body>
+  </html>
