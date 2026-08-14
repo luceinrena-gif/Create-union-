@@ -1,0 +1,3110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Credit Unions LLC - Serviços financeiros, empréstimos e soluções de financiamento.">
+<title>Credit Unions LLC | Serviços Financeiros</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root{
+  --navy:#071a33;
+  --navy2:#0d2b50;
+  --blue:#1769e0;
+  --blue2:#3d8cff;
+  --light:#f5f8fc;
+  --white:#fff;
+  --text:#172033;
+  --muted:#667085;
+  --border:#e3e8ef;
+  --green:#11865b;
+  --red:#c62828;
+  --yellow:#a66a00;
+  --shadow:0 10px 35px rgba(7,26,51,.08);
+  --radius:16px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.6;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1120px,92%);
+  margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  background:rgba(7,26,51,.97);
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.header-inner{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.brand{
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:-.5px;
+}
+
+.brand span{
+  color:#55a0ff;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.nav a{
+  color:#dbe7f5;
+  font-size:14px;
+  font-weight:600;
+}
+
+.nav a:hover{
+  color:#fff;
+}
+
+.menu-btn{
+  display:none;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:27px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:45px;
+  padding:0 18px;
+  border:0;
+  border-radius:9px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:var(--blue);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#0e5cc9;
+}
+
+.btn-dark{
+  background:var(--navy);
+  color:#fff;
+}
+
+.btn-light{
+  background:#fff;
+  color:var(--navy);
+  border:1px solid var(--border);
+}
+
+.btn-danger{
+  background:var(--red);
+  color:#fff;
+}
+
+.btn-small{
+  min-height:36px;
+  padding:0 12px;
+  font-size:13px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  background:
+    radial-gradient(circle at 85% 20%,rgba(61,140,255,.28),transparent 35%),
+    linear-gradient(135deg,var(--navy),#0b3b6d);
+  color:#fff;
+  padding:95px 0;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:60px;
+  align-items:center;
+}
+
+.hero h1{
+  font-size:clamp(38px,6vw,64px);
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:22px;
+}
+
+.hero p{
+  max-width:650px;
+  color:#d4e2f2;
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.hero-card{
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:22px;
+  padding:30px;
+  backdrop-filter:blur(10px);
+}
+
+.hero-card h3{
+  margin-bottom:18px;
+}
+
+.hero-stat{
+  padding:15px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.hero-stat:last-child{
+  border-bottom:0;
+}
+
+.hero-stat strong{
+  display:block;
+  font-size:22px;
+}
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section{
+  padding:80px 0;
+}
+
+.section-head{
+  max-width:700px;
+  margin:0 auto 42px;
+  text-align:center;
+}
+
+.section-head h2{
+  color:var(--navy);
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.section-head p{
+  color:var(--muted);
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+.card-icon{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:#edf4ff;
+  font-size:23px;
+  margin-bottom:18px;
+}
+
+.card h3{
+  margin-bottom:8px;
+  color:var(--navy);
+}
+
+.card p{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+/* =========================
+   CALCULATOR
+========================= */
+
+.calculator-wrap{
+  max-width:850px;
+  margin:auto;
+}
+
+.calculator{
+  background:var(--navy);
+  color:#fff;
+  border-radius:20px;
+  padding:35px;
+  box-shadow:var(--shadow);
+}
+
+.calculator-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.calculator label{
+  color:#d9e6f5;
+}
+
+.calculator input{
+  margin-top:7px;
+  background:#fff;
+}
+
+.calculator-result{
+  margin-top:25px;
+  padding:20px;
+  border-radius:12px;
+  background:rgba(255,255,255,.08);
+}
+
+.calculator-result small{
+  color:#bcd0e6;
+}
+
+.calculator-result strong{
+  display:block;
+  font-size:32px;
+}
+
+/* =========================
+   AUTH
+========================= */
+
+.auth-section{
+  background:#edf3fa;
+}
+
+.auth-box{
+  max-width:650px;
+  margin:auto;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:35px;
+  box-shadow:var(--shadow);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.form-group{
+  margin-bottom:16px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  color:#344054;
+  margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  min-height:45px;
+  border:1px solid #d5dce5;
+  border-radius:8px;
+  padding:10px 12px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(23,105,224,.1);
+}
+
+.auth-links{
+  margin-top:15px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* =========================
+   PORTAL
+========================= */
+
+.portal{
+  display:none;
+}
+
+.portal.active{
+  display:block;
+}
+
+.portal-header{
+  background:var(--navy);
+  color:#fff;
+  padding:35px 0;
+}
+
+.portal-header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.portal-header h2{
+  color:#fff;
+  margin-bottom:3px;
+}
+
+.portal-header p{
+  color:#b9cbe0;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.stat-card small{
+  color:var(--muted);
+  font-weight:600;
+}
+
+.stat-card strong{
+  display:block;
+  font-size:30px;
+  color:var(--navy);
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.panel{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:25px;
+  box-shadow:var(--shadow);
+  margin-bottom:25px;
+}
+
+.panel h3{
+  color:var(--navy);
+  margin-bottom:18px;
+}
+
+.table-scroll{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+
+th,
+td{
+  text-align:left;
+  padding:13px 10px;
+  border-bottom:1px solid #edf0f4;
+  font-size:14px;
+}
+
+th{
+  color:#475467;
+  background:#f8fafc;
+}
+
+.badge{
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  background:#eef2f6;
+}
+
+.badge.approved,
+.badge.accepted,
+.badge.completed{
+  background:#e8f7f0;
+  color:var(--green);
+}
+
+.badge.denied,
+.badge.rejected,
+.badge.failed{
+  background:#fdecec;
+  color:var(--red);
+}
+
+.badge.pending,
+.badge.under_review{
+  background:#fff4dc;
+  color:var(--yellow);
+}
+
+/* =========================
+   APPLICATIONS
+========================= */
+
+.application-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+.admin-section{
+  background:#0b1f3a;
+  color:#fff;
+}
+
+.admin-section .section-head h2{
+  color:#fff;
+}
+
+.admin-section .section-head p{
+  color:#b9cbe0;
+}
+
+.admin-hidden{
+  display:none;
+}
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notification{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:15px;
+  margin-bottom:10px;
+}
+
+.notification strong{
+  color:var(--navy);
+}
+
+.notification p{
+  color:var(--muted);
+  margin:4px 0 10px;
+}
+
+/* =========================
+   DOCUMENTS
+========================= */
+
+.upload-box{
+  border:2px dashed #cbd5e1;
+  border-radius:14px;
+  padding:30px;
+  text-align:center;
+}
+
+.upload-box p{
+  color:var(--muted);
+  margin:8px 0 20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#041124;
+  color:#fff;
+  padding:45px 0 25px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:40px;
+}
+
+footer h3{
+  margin-bottom:12px;
+}
+
+footer p,
+footer a{
+  color:#9eabc0;
+  font-size:14px;
+  display:block;
+  margin-bottom:7px;
+}
+
+.footer-bottom{
+  margin-top:35px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  max-width:360px;
+  background:var(--navy);
+  color:#fff;
+  padding:14px 18px;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  display:none;
+  z-index:500;
+}
+
+.toast.show{
+  display:block;
+}
+
+.toast.error{
+  background:var(--red);
+}
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:72px;
+    background:var(--navy);
+    padding:20px;
+    flex-direction:column;
+    align-items:flex-start;
+    border-top:1px solid rgba(255,255,255,.1);
+  }
+
+  .nav.open{
+    display:flex;
+  }
+
+  .hero-grid,
+  .application-layout{
+    grid-template-columns:1fr;
+  }
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .calculator-grid{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  section{
+    padding:60px 0;
+  }
+
+  .hero{
+    padding:70px 0;
+  }
+
+  .hero h1{
+    letter-spacing:-1px;
+  }
+}
+
+@media(max-width:600px){
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .auth-box,
+  .calculator,
+  .panel{
+    padding:22px;
+  }
+
+  .portal-header-inner{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="toast" class="toast"></div>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+  <div class="container header-inner">
+
+    <a href="#home" class="brand">
+      Credit <span>Unions</span>
+    </a>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <nav class="nav" id="nav">
+      <a href="#services" onclick="closeMenu()">Serviços</a>
+      <a href="#calculator" onclick="closeMenu()">Calculadora</a>
+      <a href="#register" onclick="closeMenu()">Criar conta</a>
+      <a href="#login" onclick="closeMenu()">Entrar</a>
+      <a href="#contact" onclick="closeMenu()">Contato</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<main id="home">
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <p style="color:#80b6ff;font-weight:800;margin-bottom:10px">
+        CREDIT UNIONS LLC
+      </p>
+
+      <h1>
+        Soluções financeiras para seus próximos passos.
+      </h1>
+
+      <p>
+        Um portal digital simples para solicitar financiamento,
+        acompanhar solicitações, enviar documentos e gerenciar sua conta.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#register" class="btn btn-primary">
+          Criar minha conta
+        </a>
+
+        <a href="#calculator" class="btn btn-light">
+          Calcular pagamento
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hero-card">
+
+      <h3>Portal financeiro</h3>
+
+      <div class="hero-stat">
+        <strong>Empréstimos</strong>
+        <span>Solicitações online</span>
+      </div>
+
+      <div class="hero-stat">
+        <strong>Hipotecas</strong>
+        <span>Processo digital</span>
+      </div>
+
+      <div class="hero-stat">
+        <strong>Documentos</strong>
+        <span>Envio seguro para sua conta</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="services">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Nossos serviços</h2>
+      <p>
+        Acesse ferramentas financeiras através de um único portal.
+      </p>
+    </div>
+
+    <div class="services">
+
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <h3>Financiamento</h3>
+        <p>
+          Envie sua solicitação e acompanhe o status diretamente pelo portal.
+        </p>
+        <a href="#loan" class="btn btn-primary">Solicitar</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>Hipoteca</h3>
+        <p>
+          Envie informações sobre seu imóvel e sua necessidade de financiamento.
+        </p>
+        <a href="#mortgage" class="btn btn-primary">Começar</a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔐</div>
+        <h3>Portal do cliente</h3>
+        <p>
+          Gerencie solicitações, documentos e notificações em um só lugar.
+        </p>
+        <a href="#login" class="btn btn-primary">Entrar</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CALCULATOR
+========================= -->
+
+<section id="calculator">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Calculadora de empréstimo</h2>
+      <p>
+        Use esta ferramenta para obter uma estimativa ilustrativa.
+      </p>
+    </div>
+
+    <div class="calculator-wrap">
+
+      <div class="calculator">
+
+        <div class="calculator-grid">
+
+          <div class="form-group">
+            <label style="color:#d9e6f5">Valor do empréstimo</label>
+            <input id="amount" type="number" value="10000" min="1">
+          </div>
+
+          <div class="form-group">
+            <label style="color:#d9e6f5">Juros mensais (%)</label>
+            <input id="rate" type="number" value="1.17" step="0.01" min="0">
+          </div>
+
+          <div class="form-group">
+            <label style="color:#d9e6f5">Prazo (meses)</label>
+            <input id="months" type="number" value="12" min="1">
+          </div>
+
+        </div>
+
+        <button class="btn btn-primary" onclick="calculateLoan()">
+          Calcular
+        </button>
+
+        <div class="calculator-result">
+          <small>Pagamento mensal estimado</small>
+          <strong id="result">$0.00</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     REGISTER
+========================= -->
+
+<section id="register" class="auth-section">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Criar sua conta</h2>
+      <p>
+        Crie sua conta para acessar o portal do cliente.
+      </p>
+    </div>
+
+    <div class="auth-box">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Nome</label>
+          <input id="rFirst">
+        </div>
+
+        <div class="form-group">
+          <label>Sobrenome</label>
+          <input id="rLast">
+        </div>
+
+        <div class="form-group">
+          <label>E-mail</label>
+          <input id="rEmail" type="email">
+        </div>
+
+        <div class="form-group">
+          <label>Telefone</label>
+          <input id="rPhone" type="tel">
+        </div>
+
+        <div class="form-group">
+          <label>Data de nascimento</label>
+          <input id="rDob" type="date">
+        </div>
+
+        <div class="form-group">
+          <label>Cidade</label>
+          <input id="rCity">
+        </div>
+
+        <div class="form-group">
+          <label>Estado/Província</label>
+          <input id="rState">
+        </div>
+
+        <div class="form-group">
+          <label>Código postal</label>
+          <input id="rPostal">
+        </div>
+
+        <div class="form-group full">
+          <label>Endereço</label>
+          <input id="rAddress">
+        </div>
+
+        <div class="form-group">
+          <label>Senha</label>
+          <input id="rPass" type="password">
+        </div>
+
+        <div class="form-group">
+          <label>Confirmar senha</label>
+          <input id="rPass2" type="password">
+        </div>
+
+      </div>
+
+      <p style="margin:8px 0 18px">
+        <label style="font-weight:400">
+          <input
+            id="terms"
+            type="checkbox"
+            style="width:auto;min-height:auto"
+          >
+          Concordo com os Termos e a Política de Privacidade.
+        </label>
+      </p>
+
+      <button class="btn btn-primary" onclick="registerUser()">
+        Criar conta
+      </button>
+
+      <div class="auth-links">
+        Já possui uma conta?
+        <a href="#login" style="color:var(--blue);font-weight:700">
+          Entrar
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<section id="login">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Entrar no portal</h2>
+      <p>
+        Acesse sua conta para acompanhar suas solicitações.
+      </p>
+    </div>
+
+    <div class="auth-box">
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input id="lEmail" type="email">
+      </div>
+
+      <div class="form-group">
+        <label>Senha</label>
+        <input id="lPass" type="password">
+      </div>
+
+      <button class="btn btn-primary" onclick="loginUser()">
+        Entrar
+      </button>
+
+      <button
+        class="btn btn-light"
+        style="margin-left:8px"
+        onclick="sendOtp()"
+      >
+        Código por e-mail
+      </button>
+
+      <p class="auth-links">
+        A autenticação por SMS depende de um provedor de SMS configurado
+        no Supabase Auth.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     OTP
+========================= -->
+
+<section id="otp" class="auth-section">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Verificação</h2>
+      <p>
+        Digite o código enviado para seu e-mail.
+      </p>
+    </div>
+
+    <div class="auth-box">
+
+      <div class="form-group">
+        <label>Código de 6 dígitos</label>
+        <input
+          id="otpCode"
+          maxlength="6"
+          inputmode="numeric"
+        >
+      </div>
+
+      <button class="btn btn-primary" onclick="verifyOtp()">
+        Verificar
+      </button>
+
+      <button
+        class="btn btn-light"
+        style="margin-left:8px"
+        onclick="sendOtp()"
+      >
+        Reenviar código
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CUSTOMER PORTAL
+========================= -->
+
+<section id="portal" class="portal">
+
+  <div class="portal-header">
+
+    <div class="container portal-header-inner">
+
+      <div>
+        <h2>Painel do Cliente</h2>
+        <p id="welcome">
+          Bem-vindo ao seu portal.
+        </p>
+      </div>
+
+      <button class="btn btn-light" onclick="logoutUser()">
+        Sair
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="container" style="padding-top:45px">
+
+    <div class="dashboard-grid">
+
+      <div class="stat-card">
+        <small>Empréstimos</small>
+        <strong id="loanCount">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <small>Hipotecas</small>
+        <strong id="mortCount">0</strong>
+      </div>
+
+      <div class="stat-card">
+        <small>Notificações não lidas</small>
+        <strong id="notifCount">0</strong>
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h3>Minhas solicitações de financiamento</h3>
+
+      <div class="table-scroll">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Valor</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="loanRows">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h3>Notificações</h3>
+
+      <div id="notifications">
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h3>Documentos</h3>
+
+      <div class="upload-box">
+
+        <strong>Enviar um documento</strong>
+
+        <p>
+          PDF, PNG, JPG ou documento. Tamanho máximo: 10 MB.
+        </p>
+
+        <input
+          id="fileInput"
+          type="file"
+          accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
+        >
+
+        <br><br>
+
+        <button class="btn btn-primary" onclick="uploadDocument()">
+          Enviar documento
+        </button>
+
+        <p id="uploadStatus"></p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LOAN
+========================= -->
+
+<section id="loan">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Solicitar financiamento</h2>
+      <p>
+        Faça login antes de enviar sua solicitação.
+      </p>
+    </div>
+
+    <div class="auth-box">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Nome</label>
+          <input id="lf">
+        </div>
+
+        <div class="form-group">
+          <label>Sobrenome</label>
+          <input id="ll">
+        </div>
+
+        <div class="form-group">
+          <label>Valor solicitado</label>
+          <input id="la" type="number" min="1">
+        </div>
+
+        <div class="form-group">
+          <label>Situação profissional</label>
+          <select id="le">
+            <option value="Empregado">Empregado</option>
+            <option value="Autônomo">Autônomo</option>
+            <option value="Aposentado">Aposentado</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label>Informações adicionais</label>
+          <textarea id="li"></textarea>
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary" onclick="submitLoan()">
+        Enviar solicitação
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MORTGAGE
+========================= -->
+
+<section id="mortgage" class="auth-section">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Solicitar hipoteca</h2>
+      <p>
+        Envie as informações iniciais da propriedade.
+      </p>
+    </div>
+
+    <div class="auth-box">
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Nome</label>
+          <input id="mf">
+        </div>
+
+        <div class="form-group">
+          <label>Sobrenome</label>
+          <input id="ml">
+        </div>
+
+        <div class="form-group">
+          <label>Valor do imóvel</label>
+          <input id="mp" type="number">
+        </div>
+
+        <div class="form-group">
+          <label>Hipoteca solicitada</label>
+          <input id="mr" type="number">
+        </div>
+
+        <div class="form-group">
+          <label>Tipo de propriedade</label>
+          <select id="mt">
+            <option value="Casa Unifamiliar">Casa Unifamiliar</option>
+            <option value="Condomínio">Condomínio</option>
+            <option value="Multifamiliar">Multifamiliar</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Transação</label>
+          <select id="mx">
+            <option value="purchase">Compra</option>
+            <option value="refinance">Refinanciamento</option>
+          </select>
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary" onclick="submitMortgage()">
+        Enviar solicitação
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ADMIN
+========================= -->
+
+<section id="admin" class="admin-section">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <h2>Administração</h2>
+
+      <p>
+        Área restrita para administradores autorizados.
+      </p>
+
+    </div>
+
+    <div id="adminArea" class="admin-hidden">
+
+      <div class="dashboard-grid">
+
+        <div class="stat-card">
+          <small>Usuários</small>
+          <strong id="usersN">0</strong>
+        </div>
+
+        <div class="stat-card">
+          <small>Empréstimos</small>
+          <strong id="adminLoansN">0</strong>
+        </div>
+
+        <div class="stat-card">
+          <small>Hipotecas</small>
+          <strong id="adminMortN">0</strong>
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <h3>Solicitações de financiamento</h3>
+
+        <div class="table-scroll">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody id="adminRows">
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PAYMENTS
+========================= -->
+
+<section id="payments">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Pagamentos</h2>
+      <p>
+        Os pagamentos devem ser processados através de um provedor
+        de pagamentos apropriado.
+      </p>
+    </div>
+
+    <div class="card" style="max-width:800px;margin:auto;text-align:center">
+
+      <div class="card-icon" style="margin:0 auto 18px">
+        💳
+      </div>
+
+      <h3>Pagamentos seguros</h3>
+
+      <p>
+        Não insira números de cartão diretamente neste site.
+        A integração com um processador de pagamentos deverá ser
+        configurada separadamente.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact" class="auth-section">
+
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Entre em contato</h2>
+      <p>
+        Para dúvidas sobre nossos serviços, entre em contato.
+      </p>
+    </div>
+
+    <div class="card" style="max-width:650px;margin:auto;text-align:center">
+
+      <h3>Credit Unions LLC</h3>
+
+      <p>
+        Serviços financeiros
+      </p>
+
+      <a
+        class="btn btn-primary"
+        href="mailto:creditunionsus32@gmail.com"
+      >
+        creditunionsus32@gmail.com
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PRIVACY
+========================= -->
+
+<section id="privacy">
+
+  <div class="container">
+
+    <div class="card">
+
+      <h2>Política de Privacidade</h2>
+
+      <p style="color:var(--muted);margin-top:10px">
+        Esta é uma página modelo. Antes de utilizar o site
+        comercialmente, substitua este conteúdo por uma política
+        de privacidade adequada à sua operação e jurisdição.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TERMS
+========================= -->
+
+<section id="terms">
+
+  <div class="container">
+
+    <div class="card">
+
+      <h2>Termos e Condições</h2>
+
+      <p style="color:var(--muted);margin-top:10px">
+        Esta é uma página modelo. Revise juridicamente os termos
+        antes da publicação comercial.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <h3>Credit Unions LLC</h3>
+        <p>
+          Serviços financeiros e portal digital para clientes.
+        </p>
+      </div>
+
+      <div>
+        <h3>Links</h3>
+        <a href="#services">Serviços</a>
+        <a href="#calculator">Calculadora</a>
+        <a href="#register">Criar conta</a>
+        <a href="#login">Entrar</a>
+      </div>
+
+      <div>
+        <h3>Informações</h3>
+        <a href="#privacy">Privacidade</a>
+        <a href="#terms">Termos</a>
+        <a href="#contact">Contato</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <p>
+        © 2026 Credit Unions LLC. Todas as informações regulatórias
+        devem ser verificadas antes da publicação.
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/* ============================================================
+   SUPABASE
+============================================================ */
+
+const SUPABASE_URL =
+  "https://ldvcidzoysjvfjmumlxv.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_fGC1GkBKeUGgmeOzIrcGlQ_jr1jJqAI";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* ============================================================
+   STATE
+============================================================ */
+
+let currentUser = null;
+let currentProfile = null;
+let otpEmail = null;
+
+
+/* ============================================================
+   HELPERS
+============================================================ */
+
+function $(id){
+  return document.getElementById(id);
+}
+
+
+function toast(message,error=false){
+
+  const box = $("toast");
+
+  box.textContent = message;
+
+  box.className =
+    error
+      ? "toast show error"
+      : "toast show";
+
+  setTimeout(()=>{
+    box.className = "toast";
+  },4500);
+}
+
+
+function money(value){
+
+  return Number(value || 0).toLocaleString(
+    "en-US",
+    {
+      style:"currency",
+      currency:"USD"
+    }
+  );
+
+}
+
+
+function formatDate(value){
+
+  if(!value) return "-";
+
+  return new Date(value).toLocaleDateString(
+    "pt-BR"
+  );
+
+}
+
+
+function statusBadge(status){
+
+  status = status || "pending";
+
+  const safe =
+    String(status)
+      .replace(/[^a-zA-Z_]/g,"");
+
+  return `
+    <span class="badge ${safe}">
+      ${String(status).replaceAll("_"," ")}
+    </span>
+  `;
+
+}
+
+
+function requireLogin(){
+
+  if(!currentUser){
+
+    toast(
+      "Faça login para continuar.",
+      true
+    );
+
+    location.hash = "login";
+
+    return false;
+  }
+
+  return true;
+}
+
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+
+function toggleMenu(){
+
+  $("nav").classList.toggle("open");
+
+}
+
+
+function closeMenu(){
+
+  $("nav").classList.remove("open");
+
+}
+
+
+/* ============================================================
+   CALCULATOR
+============================================================ */
+
+function calculateLoan(){
+
+  const amount =
+    Number($("amount").value);
+
+  const rate =
+    Number($("rate").value) / 100;
+
+  const months =
+    Number($("months").value);
+
+  if(
+    amount <= 0 ||
+    months <= 0 ||
+    rate < 0
+  ){
+
+    toast(
+      "Digite valores válidos.",
+      true
+    );
+
+    return;
+  }
+
+  let payment;
+
+  if(rate === 0){
+
+    payment = amount / months;
+
+  }else{
+
+    payment =
+      amount *
+      (
+        rate *
+        Math.pow(1 + rate,months)
+      ) /
+      (
+        Math.pow(1 + rate,months) - 1
+      );
+
+  }
+
+  $("result").textContent =
+    money(payment);
+
+}
+
+
+/* ============================================================
+   REGISTER
+============================================================ */
+
+async function registerUser(){
+
+  const first =
+    $("rFirst").value.trim();
+
+  const last =
+    $("rLast").value.trim();
+
+  const email =
+    $("rEmail").value.trim();
+
+  const phone =
+    $("rPhone").value.trim();
+
+  const password =
+    $("rPass").value;
+
+  const password2 =
+    $("rPass2").value;
+
+  if(
+    !first ||
+    !last ||
+    !email ||
+    !password
+  ){
+
+    toast(
+      "Preencha os campos obrigatórios.",
+      true
+    );
+
+    return;
+  }
+
+  if(password.length < 8){
+
+    toast(
+      "A senha deve ter pelo menos 8 caracteres.",
+      true
+    );
+
+    return;
+  }
+
+  if(password !== password2){
+
+    toast(
+      "As senhas não coincidem.",
+      true
+    );
+
+    return;
+  }
+
+  if(!$("terms").checked){
+
+    toast(
+      "Aceite os termos para continuar.",
+      true
+    );
+
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.auth.signUp({
+
+      email,
+
+      password,
+
+      options:{
+        data:{
+          first_name:first,
+          last_name:last,
+          phone
+        }
+      }
+
+    });
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  if(data.user){
+
+    const profileData = {
+
+      id:data.user.id,
+
+      first_name:first,
+
+      last_name:last,
+
+      email,
+
+      phone,
+
+      date_of_birth:
+        $("rDob").value || null,
+
+      address:
+        $("rAddress").value.trim(),
+
+      city:
+        $("rCity").value.trim(),
+
+      state:
+        $("rState").value.trim(),
+
+      postal_code:
+        $("rPostal").value.trim()
+
+    };
+
+
+    const result =
+      await supabaseClient
+        .from("profiles")
+        .upsert(
+          profileData,
+          {onConflict:"id"}
+        );
+
+
+    if(result.error){
+
+      console.error(
+        "Profile error:",
+        result.error
+      );
+
+    }
+
+  }
+
+
+  if(data.session){
+
+    toast(
+      "Conta criada com sucesso."
+    );
+
+    await loadUser();
+
+    location.hash =
+      "portal";
+
+  }else{
+
+    toast(
+      "Conta criada. Verifique seu e-mail antes de entrar."
+    );
+
+    location.hash =
+      "login";
+
+  }
+
+}
+
+
+/* ============================================================
+   LOGIN
+============================================================ */
+
+async function loginUser(){
+
+  const email =
+    $("lEmail").value.trim();
+
+  const password =
+    $("lPass").value;
+
+
+  if(!email || !password){
+
+    toast(
+      "Digite seu e-mail e senha.",
+      true
+    );
+
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.auth.signInWithPassword({
+
+      email,
+
+      password
+
+    });
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  toast(
+    "Login realizado com sucesso."
+  );
+
+
+  await loadUser();
+
+  location.hash =
+    "portal";
+
+}
+
+
+/* ============================================================
+   OTP
+============================================================ */
+
+async function sendOtp(){
+
+  const email =
+    (
+      $("lEmail").value ||
+      $("rEmail").value
+    ).trim();
+
+
+  if(!email){
+
+    toast(
+      "Digite seu e-mail.",
+      true
+    );
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient.auth.signInWithOtp({
+
+      email,
+
+      options:{
+        shouldCreateUser:false
+      }
+
+    });
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  otpEmail =
+    email;
+
+
+  toast(
+    "Código enviado para seu e-mail."
+  );
+
+
+  location.hash =
+    "otp";
+
+}
+
+
+async function verifyOtp(){
+
+  if(!otpEmail){
+
+    toast(
+      "Solicite um código primeiro.",
+      true
+    );
+
+    return;
+  }
+
+
+  const code =
+    $("otpCode").value.trim();
+
+
+  if(!code){
+
+    toast(
+      "Digite o código.",
+      true
+    );
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient.auth.verifyOtp({
+
+      email:otpEmail,
+
+      token:code,
+
+      type:"email"
+
+    });
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  toast(
+    "Código verificado."
+  );
+
+
+  await loadUser();
+
+  location.hash =
+    "portal";
+
+}
+
+
+/* ============================================================
+   LOAD USER
+============================================================ */
+
+async function loadUser(){
+
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  currentUser =
+    data.session
+      ? data.session.user
+      : null;
+
+
+  currentProfile =
+    null;
+
+
+  if(!currentUser){
+
+    $("portal").classList.remove("active");
+
+    $("adminArea").classList.add("admin-hidden");
+
+    return;
+  }
+
+
+  const {
+    data:profileData,
+    error
+  } =
+    await supabaseClient
+      .from("profiles")
+      .select("*")
+      .eq("id",currentUser.id)
+      .maybeSingle();
+
+
+  if(error){
+
+    console.error(
+      "Profile loading error:",
+      error
+    );
+
+  }
+
+
+  currentProfile =
+    profileData || null;
+
+
+  $("portal").classList.add("active");
+
+
+  $("welcome").textContent =
+    "Bem-vindo, " +
+    (
+      currentProfile?.first_name ||
+      currentUser.email
+    );
+
+
+  await loadCustomerData();
+
+
+  if(
+    currentProfile &&
+    currentProfile.role === "admin"
+  ){
+
+    await loadAdmin();
+
+  }else{
+
+    $("adminArea")
+      .classList
+      .add("admin-hidden");
+
+  }
+
+}
+
+
+/* ============================================================
+   CUSTOMER DATA
+============================================================ */
+
+async function loadCustomerData(){
+
+  if(!currentUser) return;
+
+
+  const [
+    loansResult,
+    mortgagesResult,
+    notificationsResult
+  ] =
+    await Promise.all([
+
+      supabaseClient
+        .from("loan_applications")
+        .select("*")
+        .eq(
+          "applicant_id",
+          currentUser.id
+        )
+        .order(
+          "created_at",
+          {ascending:false}
+        ),
+
+      supabaseClient
+        .from("mortgage_applications")
+        .select("*")
+        .eq(
+          "applicant_id",
+          currentUser.id
+        )
+        .order(
+          "created_at",
+          {ascending:false}
+        ),
+
+      supabaseClient
+        .from("notifications")
+        .select("*")
+        .eq(
+          "user_id",
+          currentUser.id
+        )
+        .order(
+          "created_at",
+          {ascending:false}
+        )
+
+    ]);
+
+
+  const loans =
+    loansResult.data || [];
+
+  const mortgages =
+    mortgagesResult.data || [];
+
+  const notifications =
+    notificationsResult.data || [];
+
+
+  $("loanCount").textContent =
+    loans.length;
+
+  $("mortCount").textContent =
+    mortgages.length;
+
+  $("notifCount").textContent =
+    notifications.filter(
+      x => !x.is_read
+    ).length;
+
+
+  if(!loans.length){
+
+    $("loanRows").innerHTML = `
+      <tr>
+        <td colspan="3">
+          Nenhuma solicitação encontrada.
+        </td>
+      </tr>
+    `;
+
+  }else{
+
+    $("loanRows").innerHTML =
+      loans.map(loan=>`
+
+        <tr>
+
+          <td>
+            ${formatDate(loan.created_at)}
+          </td>
+
+          <td>
+            ${money(loan.requested_amount)}
+          </td>
+
+          <td>
+            ${statusBadge(loan.status)}
+          </td>
+
+        </tr>
+
+      `).join("");
+
+  }
+
+
+  if(!notifications.length){
+
+    $("notifications").innerHTML =
+      `<p style="color:var(--muted)">
+        Nenhuma notificação.
+      </p>`;
+
+  }else{
+
+    $("notifications").innerHTML =
+      notifications.map(note=>`
+
+        <div class="notification">
+
+          <strong>
+            ${escapeHtml(note.title)}
+          </strong>
+
+          <p>
+            ${escapeHtml(note.message)}
+          </p>
+
+          ${
+            !note.is_read
+              ? `
+                <button
+                  class="btn btn-light btn-small"
+                  onclick="markNotificationRead('${note.id}')"
+                >
+                  Marcar como lida
+                </button>
+              `
+              : `
+                <span class="badge">
+                  Lida
+                </span>
+              `
+          }
+
+        </div>
+
+      `).join("");
+
+  }
+
+}
+
+
+/* ============================================================
+   MARK NOTIFICATION READ
+============================================================ */
+
+async function markNotificationRead(id){
+
+  if(!currentUser) return;
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("notifications")
+      .update({
+        is_read:true
+      })
+      .eq(
+        "id",
+        id
+      )
+      .eq(
+        "user_id",
+        currentUser.id
+      );
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  await loadCustomerData();
+
+}
+
+
+/* ============================================================
+   LOAN APPLICATION
+============================================================ */
+
+async function submitLoan(){
+
+  if(!requireLogin()) return;
+
+
+  const amount =
+    Number($("la").value);
+
+
+  if(
+    !$("lf").value.trim() ||
+    !$("ll").value.trim() ||
+    !amount ||
+    amount <= 0
+  ){
+
+    toast(
+      "Preencha os campos obrigatórios.",
+      true
+    );
+
+    return;
+  }
+
+
+  const application = {
+
+    applicant_id:
+      currentUser.id,
+
+    first_name:
+      $("lf").value.trim(),
+
+    last_name:
+      $("ll").value.trim(),
+
+    requested_amount:
+      amount,
+
+    employment_status:
+      $("le").value,
+
+    additional_information:
+      $("li").value.trim()
+
+  };
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("loan_applications")
+      .insert(application);
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  toast(
+    "Solicitação enviada com sucesso."
+  );
+
+
+  await loadCustomerData();
+
+  location.hash =
+    "portal";
+
+}
+
+
+/* ============================================================
+   MORTGAGE
+============================================================ */
+
+async function submitMortgage(){
+
+  if(!requireLogin()) return;
+
+
+  const propertyValue =
+    Number($("mp").value);
+
+  const requested =
+    Number($("mr").value);
+
+
+  if(
+    !$("mf").value.trim() ||
+    !$("ml").value.trim() ||
+    propertyValue <= 0 ||
+    requested <= 0
+  ){
+
+    toast(
+      "Preencha os campos obrigatórios.",
+      true
+    );
+
+    return;
+  }
+
+
+  const application = {
+
+    applicant_id:
+      currentUser.id,
+
+    first_name:
+      $("mf").value.trim(),
+
+    last_name:
+      $("ml").value.trim(),
+
+    property_value:
+      propertyValue,
+
+    requested_mortgage:
+      requested,
+
+    property_type:
+      $("mt").value,
+
+    transaction_type:
+      $("mx").value
+
+  };
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("mortgage_applications")
+      .insert(application);
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  toast(
+    "Solicitação de hipoteca enviada."
+  );
+
+
+  await loadCustomerData();
+
+  location.hash =
+    "portal";
+
+}
+
+
+/* ============================================================
+   DOCUMENT UPLOAD
+============================================================ */
+
+async function uploadDocument(){
+
+  if(!requireLogin()) return;
+
+
+  const input =
+    $("fileInput");
+
+  const file =
+    input.files[0];
+
+
+  if(!file){
+
+    toast(
+      "Selecione um documento.",
+      true
+    );
+
+    return;
+  }
+
+
+  if(file.size > 10485760){
+
+    toast(
+      "O arquivo deve ter no máximo 10 MB.",
+      true
+    );
+
+    return;
+  }
+
+
+  $("uploadStatus").textContent =
+    "Enviando documento...";
+
+
+  const safeName =
+    file.name.replace(
+      /[^a-zA-Z0-9._-]/g,
+      "_"
+    );
+
+
+  const path =
+    currentUser.id +
+    "/" +
+    crypto.randomUUID() +
+    "-" +
+    safeName;
+
+
+  const {
+    error:uploadError
+  } =
+    await supabaseClient.storage
+      .from("customer-documents")
+      .upload(
+        path,
+        file
+      );
+
+
+  if(uploadError){
+
+    $("uploadStatus").textContent = "";
+
+    toast(
+      uploadError.message,
+      true
+    );
+
+    return;
+  }
+
+
+  const {
+    error:databaseError
+  } =
+    await supabaseClient
+      .from("documents")
+      .insert({
+
+        user_id:
+          currentUser.id,
+
+        file_name:
+          file.name,
+
+        storage_path:
+          path,
+
+        file_type:
+          file.type,
+
+        file_size:
+          file.size,
+
+        document_type:
+          "customer_upload"
+
+      });
+
+
+  if(databaseError){
+
+    await supabaseClient.storage
+      .from("customer-documents")
+      .remove([path]);
+
+
+    $("uploadStatus").textContent = "";
+
+    toast(
+      databaseError.message,
+      true
+    );
+
+    return;
+  }
+
+
+  $("uploadStatus").textContent =
+    "Documento enviado com sucesso.";
+
+  input.value = "";
+
+  toast(
+    "Documento enviado."
+  );
+
+}
+
+
+/* ============================================================
+   ADMIN
+============================================================ */
+
+async function loadAdmin(){
+
+  if(
+    !currentProfile ||
+    currentProfile.role !== "admin"
+  ){
+
+    $("adminArea")
+      .classList
+      .add("admin-hidden");
+
+    return;
+  }
+
+
+  $("adminArea")
+    .classList
+    .remove("admin-hidden");
+
+
+  const [
+    usersResult,
+    loansResult,
+    mortgagesResult
+  ] =
+    await Promise.all([
+
+      supabaseClient
+        .from("profiles")
+        .select("id",{count:"exact",head:true}),
+
+      supabaseClient
+        .from("loan_applications")
+        .select("*")
+        .order(
+          "created_at",
+          {ascending:false}
+        ),
+
+      supabaseClient
+        .from("mortgage_applications")
+        .select("*")
+
+    ]);
+
+
+  $("usersN").textContent =
+    usersResult.count || 0;
+
+  $("adminLoansN").textContent =
+    (loansResult.data || []).length;
+
+  $("adminMortN").textContent =
+    (mortgagesResult.data || []).length;
+
+
+  const loans =
+    loansResult.data || [];
+
+
+  if(!loans.length){
+
+    $("adminRows").innerHTML = `
+      <tr>
+        <td colspan="4">
+          Nenhuma solicitação.
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+
+  $("adminRows").innerHTML =
+    loans.map(loan=>`
+
+      <tr>
+
+        <td>
+          ${escapeHtml(loan.first_name)}
+          ${escapeHtml(loan.last_name)}
+        </td>
+
+        <td>
+          ${money(loan.requested_amount)}
+        </td>
+
+        <td>
+          ${statusBadge(loan.status)}
+        </td>
+
+        <td>
+
+          <button
+            class="btn btn-primary btn-small"
+            onclick="updateLoanStatus('${loan.id}','approved')"
+          >
+            Aprovar
+          </button>
+
+          <button
+            class="btn btn-danger btn-small"
+            onclick="updateLoanStatus('${loan.id}','denied')"
+          >
+            Negar
+          </button>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+/* ============================================================
+   ADMIN UPDATE LOAN
+============================================================ */
+
+async function updateLoanStatus(
+  id,
+  status
+){
+
+  if(
+    !currentProfile ||
+    currentProfile.role !== "admin"
+  ){
+
+    toast(
+      "Acesso negado.",
+      true
+    );
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("loan_applications")
+      .update({
+
+        status,
+
+        reviewed_by:
+          currentUser.id,
+
+        reviewed_at:
+          new Date().toISOString()
+
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(error){
+
+    toast(
+      error.message,
+      true
+    );
+
+    return;
+  }
+
+
+  toast(
+    "Status atualizado."
+  );
+
+
+  await loadAdmin();
+
+}
+
+
+/* ============================================================
+   LOGOUT
+============================================================ */
+
+async function logoutUser(){
+
+  await supabaseClient.auth.signOut();
+
+  currentUser =
+    null;
+
+  currentProfile =
+    null;
+
+  $("portal")
+    .classList
+    .remove("active");
+
+
+  $("adminArea")
+    .classList
+    .add("admin-hidden");
+
+
+  toast(
+    "Você saiu da sua conta."
+  );
+
+
+  location.hash =
+    "home";
+
+}
+
+
+/* ============================================================
+   ESCAPE HTML
+============================================================ */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ============================================================
+   AUTH STATE
+============================================================ */
+
+supabaseClient.auth.onAuthStateChange(
+  async () => {
+
+    setTimeout(
+      loadUser,
+      0
+    );
+
+  }
+);
+
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+window.addEventListener(
+  "load",
+  async () => {
+
+    calculateLoan();
+
+    await loadUser();
+
+  }
+);
+
+</script>
+
+</body>
+          </html>
