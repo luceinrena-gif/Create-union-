@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Credit Unions LLC | Serviços Financeiros</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--n:#071b36;--b:#168cff;--bg:#f4f7fb;--t:#172033;--m:#667085;--bd:#dce2ea;--ok:#138a5b;--bad:#c62828}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+a{text-decoration:none}.wrap{width:92%;max-width:1150px;margin:auto}header{background:var(--n);color:#fff;position:sticky;top:0;z-index:5}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:24px;font-weight:800;color:#fff}.logo span{color:var(--b)}nav{display:flex;gap:16px;align-items:center}nav a{color:#fff;font-size:14px;font-weight:bold}
+section{padding:65px 0}.hero{background:linear-gradient(120deg,#071b36,#0e4a82);color:#fff;padding:100px 0}.hero h1{font-size:clamp(40px,7vw,64px);line-height:1.05;max-width:750px}.hero p{max-width:700px;color:#d7e4f3;font-size:18px}
+h2{color:var(--n)}.title{text-align:center;margin-bottom:35px}.title p,.muted{color:var(--m)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card,.box{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:25px;box-shadow:0 5px 20px #071b360b}.box{max-width:800px;margin:auto}
+.btn{border:0;border-radius:7px;padding:12px 18px;font-weight:bold;cursor:pointer}.primary{background:var(--b);color:#fff}.dark{background:var(--n);color:#fff}.outline{background:#fff;color:var(--n);border:1px solid var(--bd)}.danger{background:var(--bad);color:#fff}
+input,select,textarea{width:100%;padding:12px;border:1px solid var(--bd);border-radius:7px;margin-top:5px}label{font-size:14px;font-weight:bold}.fg{margin-bottom:15px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.full{grid-column:1/-1}
+.auth,.admin{background:var(--n)}.auth .box{max-width:450px}.admin h2,.admin .title p{color:#fff}.table{overflow:auto;margin-top:20px}.tablebox{background:#fff;border-radius:10px;padding:20px}.tablebox table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid #eee}
+.badge{padding:3px 8px;border-radius:15px;font-size:12px;background:#eef2f7}.approved{background:#e8f7f0;color:var(--ok)}.denied{background:#fdecec;color:var(--bad)}
+.hidden{display:none!important}.toast{position:fixed;right:15px;bottom:15px;padding:14px 18px;border-radius:8px;background:var(--n);color:#fff;display:none;z-index:20}.toast.show{display:block}
+footer{background:#041124;color:#fff;padding:45px 0}footer a,footer p{color:#9eabc0;font-size:14px;display:block}
+@media(max-width:800px){nav{display:none}.grid,.formgrid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<header><div class="wrap nav"><a class="logo" href="#home">Credit <span>Unions</span></a><nav>
+<a href="#services">Serviços</a><a href="#calculator">Calculadora</a><a href="#register">Cadastrar</a><a href="#login">Entrar</a><a href="#contact">Contato</a>
+</nav></div></header>
+
+<main id="home">
+<section class="hero"><div class="wrap"><h1>Financiamento de forma simples.</h1><p>Portal digital para cadastro, solicitações, documentos, notificações e gerenciamento de contas.</p><a class="btn primary" href="#loan">Solicitar agora</a></div></section>
+<section><div class="wrap"><div class="title"><h2>Credit Unions LLC</h2><p>Serviços financeiros</p></div><div class="grid">
+<div class="card"><h3>💳 Financiamento</h3><p class="muted">Envie uma solicitação para análise.</p><a class="btn primary" href="#loan">Solicitar</a></div>
+<div class="card"><h3>🏠 Hipoteca</h3><p class="muted">Envie uma consulta imobiliária.</p><a class="btn primary" href="#mortgage">Começar</a></div>
+<div class="card"><h3>🔐 Portal</h3><p class="muted">Gerencie sua conta e documentos.</p><a class="btn primary" href="#login">Entrar</a></div>
+</div></div></section>
+
+<section id="services"><div class="wrap"><div class="title"><h2>Serviços</h2><p>Ferramentas disponíveis no portal.</p></div></div></section>
+
+<section id="calculator"><div class="wrap"><div class="title"><h2>Calculadora de Empréstimo</h2><p>Estimativa ilustrativa.</p></div><div class="box" style="background:var(--n);color:#fff">
+<div class="fg"><label>Valor</label><input id="amount" type="number" value="10000"></div>
+<div class="fg"><label>Juros mensais (%)</label><input id="rate" type="number" value="1.17" step=".01"></div>
+<div class="fg"><label>Meses</label><input id="months" type="number" value="12"></div>
+<button class="btn primary" onclick="calc()">Calcular</button><h2 style="color:#fff">Pagamento: <span id="result">$0.00</span></h2>
+</div></div></section>
+
+<section id="register"><div class="wrap"><div class="title"><h2>Criar conta</h2><p>Use um e-mail e senha para criar sua conta.</p></div><div class="box">
+<div class="formgrid">
+<div class="fg"><label>Nome</label><input id="rFirst"></div><div class="fg"><label>Sobrenome</label><input id="rLast"></div>
+<div class="fg"><label>E-mail</label><input id="rEmail" type="email"></div><div class="fg"><label>Telefone</label><input id="rPhone" type="tel" placeholder="+351..."></div>
+<div class="fg"><label>Data de nascimento</label><input id="rDob" type="date"></div><div class="fg"><label>Cidade</label><input id="rCity"></div>
+<div class="fg"><label>Estado/Província</label><input id="rState"></div><div class="fg"><label>Código postal</label><input id="rPostal"></div>
+<div class="fg full"><label>Endereço</label><input id="rAddress"></div>
+<div class="fg"><label>Senha</label><input id="rPass" type="password"></div><div class="fg"><label>Confirmar senha</label><input id="rPass2" type="password"></div>
+</div>
+<p><label><input id="terms" type="checkbox" style="width:auto"> Concordo com os Termos e Política de Privacidade.</label></p>
+<button class="btn primary" onclick="register()">Criar conta</button>
+<p class="muted">Se a confirmação de e-mail estiver ativada no Supabase, você receberá um e-mail antes do login.</p>
+</div></div></section>
+
+<section id="login" class="auth"><div class="wrap"><div class="box"><h2>Login</h2>
+<div class="fg"><label>E-mail</label><input id="lEmail" type="email"></div><div class="fg"><label>Senha</label><input id="lPass" type="password"></div>
+<button class="btn primary" onclick="login()">Entrar</button> <button class="btn outline" onclick="sendOtp()">Código por e-mail</button>
+<p class="muted">SMS exige um provedor de SMS configurado no Supabase Auth.</p>
+</div></div></section>
+
+<section id="otp"><div class="wrap"><div class="box"><h2>Verificação por e-mail</h2><div class="fg"><label>Código de 6 dígitos</label><input id="otpCode" maxlength="6" inputmode="numeric"></div><button class="btn primary" onclick="verifyOtp()">Verificar</button><button class="btn outline" onclick="sendOtp()">Reenviar</button></div></div></section>
+
+<section id="dashboard"><div class="wrap"><div class="title"><h2>Painel do Cliente</h2><p id="welcome">Faça login para ver sua conta.</p></div>
+<div id="customerArea" class="hidden">
+<div class="grid">
+<div class="card"><small>Empréstimos</small><h2 id="loanCount">0</h2></div><div class="card"><small>Hipotecas</small><h2 id="mortCount">0</h2></div><div class="card"><small>Notificações</small><h2 id="notifCount">0</h2></div>
+</div>
+<div class="tablebox table"><h3>Solicitações</h3><table><thead><tr><th>Data</th><th>Valor</th><th>Status</th></tr></thead><tbody id="loanRows"></tbody></table></div>
+<div class="tablebox table"><h3>Notificações</h3><div id="notifs"></div></div>
+<button class="btn dark" onclick="logout()">Sair</button>
+</div></div></section>
+
+<section id="loan"><div class="wrap"><div class="title"><h2>Solicitação de Financiamento</h2><p>Você precisa estar conectado.</p></div><div class="box">
+<div class="formgrid"><div class="fg"><label>Nome</label><input id="lf"></div><div class="fg"><label>Sobrenome</label><input id="ll"></div>
+<div class="fg"><label>Valor solicitado</label><input id="la" type="number" min="1"></div><div class="fg"><label>Emprego</label><select id="le"><option>Empregado</option><option>Autônomo</option><option>Aposentado</option><option>Outro</option></select></div>
+<div class="fg full"><label>Informações adicionais</label><textarea id="li"></textarea></div></div><button class="btn primary" onclick="submitLoan()">Enviar</button>
+</div></div></section>
+
+<section id="mortgage"><div class="wrap"><div class="title"><h2>Solicitação de Hipoteca</h2></div><div class="box">
+<div class="formgrid"><div class="fg"><label>Nome</label><input id="mf"></div><div class="fg"><label>Sobrenome</label><input id="ml"></div>
+<div class="fg"><label>Valor do imóvel</label><input id="mp" type="number"></div><div class="fg"><label>Hipoteca solicitada</label><input id="mr" type="number"></div>
+<div class="fg"><label>Tipo</label><select id="mt"><option>Casa Unifamiliar</option><option>Condomínio</option><option>Multifamiliar</option></select></div>
+<div class="fg"><label>Transação</label><select id="mx"><option value="purchase">Compra</option><option value="refinance">Refinanciamento</option></select></div></div>
+<button class="btn primary" onclick="submitMortgage()">Enviar</button></div></div></section>
+
+<section id="documents"><div class="wrap"><div class="title"><h2>Documentos</h2><p>Bucket privado: customer-documents.</p></div><div class="box">
+<input id="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"><br><br><button class="btn primary" onclick="upload()">Enviar documento</button><p id="uploadStatus" class="muted"></p>
+</div></div></section>
+
+<section id="admin" class="admin"><div class="wrap"><div class="title"><h2>Administração</h2><p>Somente administradores.</p></div><div id="adminArea" class="hidden">
+<div class="grid"><div class="card"><h3>Usuários</h3><h2 id="usersN">0</h2></div><div class="card"><h3>Empréstimos</h3><h2 id="adminLoansN">0</h2></div><div class="card"><h3>Hipotecas</h3><h2 id="adminMortN">0</h2></div></div>
+<div class="tablebox table"><h3>Empréstimos</h3><table><thead><tr><th>Cliente</th><th>Valor</th><th>Status</th><th>Ação</th></tr></thead><tbody id="adminRows"></tbody></table></div>
+</div></div></section>
+
+<section id="payments"><div class="wrap"><div class="title"><h2>Pagamentos</h2><p>O processamento de cartão deve usar um processador de pagamentos real; não coloque dados de cartão neste HTML.</p></div></div></section>
+
+<section id="privacy"><div class="wrap"><div class="box"><h2>Política de Privacidade</h2><p class="muted">Modelo. Substitua por uma política revisada e adequada à operação antes da publicação.</p></div></div></section>
+<section id="terms"><div class="wrap"><div class="box"><h2>Termos</h2><p class="muted">Modelo. Revise juridicamente antes do uso comercial.</p></div></div></section>
+<section id="licensing"><div class="wrap"><div class="box"><h2>Licenciamento e Divulgações</h2><p class="muted">Exiba somente licenças, NMLS e divulgações reais e verificadas.</p></div></div></section>
+<section id="contact"><div class="wrap"><div class="box" style="text-align:center"><h2>Contato</h2><a class="btn primary" href="mailto:creditunionsus32@gmail.com">creditunionsus32@gmail.com</a></div></div></section>
+
+<footer><div class="wrap"><h3>Credit Unions LLC</h3><p>Serviços financeiros.</p><p>creditunionsus32@gmail.com</p><p>© 2026 Credit Unions LLC. Verifique todas as informações regulatórias antes da publicação.</p></div></footer>
+
+<script>
+const URL="https://ldvcidzoysjvfjmumlxv.supabase.co";
+const KEY="sb_publishable_fGC1GkBKeUGgmeOzIrcGlQ_jr1jJqAI";
+const supabase=window.supabase.createClient(URL,KEY);
+let user=null,profile=null,otpEmail=null;
+
+function toast(m,err=false){let x=document.getElementById("toast");x.textContent=m;x.className="toast show";if(err)x.style.background="var(--bad)";else x.style.background="var(--n)";setTimeout(()=>x.className="toast",4500)}
+function money(n){return Number(n||0).toLocaleString("en-US",{style:"currency",currency:"USD"})}
+function date(x){return x?new Date(x).toLocaleDateString("pt-BR"):"-"}
+function badge(s){s=s||"pending";return '<span class="badge '+s+'">'+s.replace("_"," ")+"</span>"}
+function need(){if(!user){toast("Faça login primeiro.",true);location.hash="login";return false}return true}
+
+function calc(){let a=+amount.value,r=+rate.value/100,n=+months.value;if(a<=0||n<=0||r<0)return;let p=r? a*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1):a/n;result.textContent=money(p)}
+
+async function register(){
+let f=rFirst.value.trim(),l=rLast.value.trim(),e=rEmail.value.trim(),p=rPass.value;
+if(!f||!l||!e||p.length<8)return toast("Preencha os campos e use senha de pelo menos 8 caracteres.",true);
+if(p!==rPass2.value)return toast("As senhas não coincidem.",true);
+if(!terms.checked)return toast("Aceite os termos.",true);
+let {data,error}=await supabase.auth.signUp({email:e,password:p,options:{data:{first_name:f,last_name:l,phone:rPhone.value}}});
+if(error)return toast(error.message,true);
+if(data.user){
+await supabase.from("profiles").upsert({id:data.user.id,first_name:f,last_name:l,email:e,phone:rPhone.value,date_of_birth:rDob.value||null,address:rAddress.value,city:rCity.value,state:rState.value,postal_code:rPostal.value},{onConflict:"id"});
+}
+toast(data.session?"Conta criada e conectada.":"Conta criada. Verifique seu e-mail.",false);location.hash=data.session?"dashboard":"login";
+}
+
+async function login(){
+let {data,error}=await supabase.auth.signInWithPassword({email:lEmail.value.trim(),password:lPass.value});
+if(error)return toast(error.message,true);toast("Login realizado.");await load();location.hash="dashboard"
+}
+async function sendOtp(){
+let e=(lEmail.value||rEmail.value).trim();if(!e)return toast("Digite o e-mail.",true);
+let {error}=await supabase.auth.signInWithOtp({email:e,options:{shouldCreateUser:false}});
+if(error)return toast(error.message,true);otpEmail=e;toast("Código enviado por e-mail.");location.hash="otp"
+}
+async function verifyOtp(){
+if(!otpEmail)return toast("Solicite um código primeiro.",true);
+let {data,error}=await supabase.auth.verifyOtp({email:otpEmail,token:otpCode.value.trim(),type:"email"});
+if(error)return toast(error.message,true);await load();toast("Código verificado.");location.hash="dashboard"
+}
+async function logout(){await supabase.auth.signOut();user=null;profile=null;document.getElementById("customerArea").classList.add("hidden");toast("Você saiu.");location.hash="login"}
+
+async function load(){
+let s=await supabase.auth.getSession();user=s.data.session?.user||null;
+profile=null;if(user){let p=await supabase.from("profiles").select("*").eq("id",user.id).maybeSingle();profile=p.data||null}
+document.getElementById("customerArea").classList.toggle("hidden",!user);
+document.getElementById("adminArea").classList.toggle("hidden",!(profile?.role==="admin"));
+if(!user)return;
+welcome.textContent="Bem-vindo, "+(profile?.first_name||user.email);
+let [lo,mo,no]=await Promise.all([
+supabase.from("loan_applications").select("*").eq("applicant_id",user.id).order("created_at",{ascending:false}),
+supabase.from("mortgage_applications").select("*").eq("applicant_id",user.id),
+supabase.from("notifications").select("*").eq("user_id",user.id).order("created_at",{ascending:false})
+]);
+let loans=lo.data||[],morts=mo.data||[],notes=no.data||[];
+loanCount.textContent=loans.length;mortCount.textContent=morts.length;notifCount.textContent=notes.filter(x=>!x.is_read).length;
+loanRows.innerHTML=loans.length?loans.map(x=>`<tr><td>${date(x.created_at)}</td><td>${money(x.requested_amount)}</td><td>${badge(x.status)}</td></tr>`).join(""):"<tr><td colspan=3>Nenhuma solicitação.</td></tr>";
+notifs.innerHTML=notes.length?notes.map(x=>`<div class=card><b>${x.title}</b><p>${x.message}</p>${!x.is_read?`<button class="btn outline" onclick="readNote('${x.id}')">Marcar como lida</button>`:""}</div>`).join(""):"<p class=muted>Nenhuma notificação.</p>";
+if(profile?.role==="admin")await adminLoad()
+}
+async function readNote(id){let {error}=await supabase.from("notifications").update({is_read:true}).eq("id",id).eq("user_id",user.id);if(error)return toast(error.message,true);load()}
+
+async function submitLoan(){
+if(!need())return;let x={applicant_id:user.id,first_name:lf.value,last_name:ll.value,requested_amount:+la.value,employment_status:le.value,additional_information:li.value};
+let {error}=await supabase.from("loan_applications").insert(x);if(error)return toast(error.message,true);toast("Solicitação enviada.");load();location.hash="dashboard"
+}
+async function submitMortgage(){
+if(!need())return;let x={applicant_id:user.id,first_name:mf.value,last_name:ml.value,property_value:+mp.value,requested_mortgage:+mr.value,property_type:mt.value,transaction_type:mx.value};
+let {error}=await supabase.from("mortgage_applications").insert(x);if(error)return toast(error.message,true);toast("Consulta enviada.");load();location.hash="dashboard"
+}
+async function upload(){
+if(!need())return;let f=file.files[0];if(!f)return toast("Selecione um arquivo.",true);if(f.size>10485760)return toast("Máximo 10 MB.",true);
+let path=user.id+"/"+crypto.randomUUID()+"-"+f.name.replace(/[^a-zA-Z0-9._-]/g,"_");uploadStatus.textContent="Enviando...";
+let u=await supabase.storage.from("customer-documents").upload(path,f);if(u.error){uploadStatus.textContent="";return toast(u.error.message,true)}
+let d=await supabase.from("documents").insert({user_id:user.id,file_name:f.name,storage_path:path,file_type:f.type,file_size:f.size,document_type:"customer_upload"});
+if(d.error){await supabase.storage.from("customer-documents").remove([path]);return toast(d.error.message,true)}uploadStatus.textContent="Documento enviado.";toast("Documento enviado.")
+}
+async function adminLoad(){
+let [u,l]=await Promise.all([supabase.from("profiles").select("id",{count:"exact",head:true}),supabase.from("loan_applications").select("*").order("created_at",{ascending:false})]);
+usersN.textContent=u.count||0;adminLoansN.textContent=(l.data||[]).length;
+adminRows.innerHTML=(l.data||[]).map(x=>`<tr><td>${x.first_name} ${x.last_name}</td><td>${money(x.requested_amount)}</td><td>${badge(x.status)}</td><td><button class="btn primary" onclick="setLoan('${x.id}','approved')">Aprovar</button> <button class="btn danger" onclick="setLoan('${x.id}','denied')">Negar</button></td></tr>`).join("")||"<tr><td colspan=4>Nenhuma.</td></tr>";
+}
+async function setLoan(id,status){
+if(profile?.role!=="admin")return toast("Acesso negado.",true);
+let {error}=await supabase.from("loan_applications").update({status,reviewed_by:user.id,reviewed_at:new Date().toISOString()}).eq("id",id);
+if(error)return toast(error.message,true);toast("Status atualizado.");adminLoad()
+}
+supabase.auth.onAuthStateChange(()=>load());
+window.addEventListener("load",()=>{calc();load()});
+</script>
+</body>
+                                                                                               </html>
